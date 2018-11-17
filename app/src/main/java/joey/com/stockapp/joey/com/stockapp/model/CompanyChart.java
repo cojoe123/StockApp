@@ -9,6 +9,15 @@ public class CompanyChart {
     @Expose
     private String average;
 
-    
+    public CompanyChart(String average) {
+        this.average = average;
+    }
 
+    public String getAverage() {
+        return average;
+    }
+
+    public void setAverage(String average) {
+        this.average = average;
+    }
 }

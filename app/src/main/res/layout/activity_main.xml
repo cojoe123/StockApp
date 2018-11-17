@@ -1,18 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+        <SearchView
+            android:id="@+id/ticker_search"
+            android:layout_width="233dp"
+            android:layout_height="34dp"
+            android:iconifiedByDefault="true"
+            android:orientation="horizontal"
+            android:queryHint="Search Ticker"
+            android:visibility="visible">
+
+        </SearchView>
+
+        <Button
+            android:id="@+id/crypto_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Crypto Market"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/active_title"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:text="Today's Most Active:" />
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="4dp"
+        android:clipToPadding="false"
+        android:id="@+id/stock_recyclerview"
+        android:layout_width="433dp"
+        android:layout_height="128dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/gainers_title"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:text="Today's Gainers" />
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="4dp"
+        android:clipToPadding="false"
+        android:id="@+id/gainer_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="128dp" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/losers_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today's: Losers:" />
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="4dp"
+        android:clipToPadding="false"
+        android:id="@+id/losers_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

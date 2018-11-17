@@ -1,4 +1,4 @@
-package joey.com.stockapp;
+package joey.com.stockapp.joey.com.stockapp.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     private static Retrofit sRetrofit;
-    private static final String BASE_URL = "https://api.iextrading.com/1.0";
+    private static final String BASE_URL = "https://api.iextrading.com/1.0/";
 
     public static Retrofit getRetrofitInstance() {
         if (sRetrofit == null) {
