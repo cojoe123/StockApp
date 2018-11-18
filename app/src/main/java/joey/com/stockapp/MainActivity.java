@@ -1,10 +1,13 @@
 package joey.com.stockapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -24,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mGainersRecyclerView;
     private RecyclerView mLosersRecyclerView;
     private SearchView mSearchView;
-    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +35,27 @@ public class MainActivity extends AppCompatActivity {
 
         IEXStockAPI service = RetrofitClient.getRetrofitInstance().create(IEXStockAPI.class);
 
-        mSearchView = (SearchView) findViewById(R.id.ticker_search);
+        mSearchView = findViewById(R.id.ticker_search);
 
-        mButton = (Button) findViewById(R.id.crypto_button);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.stock_recyclerview);
+        Button button = findViewById(R.id.crypto_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CryptoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mRecyclerView = findViewById(R.id.stock_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         mostActiveUI(service);
 
-        mGainersRecyclerView = (RecyclerView) findViewById(R.id.gainer_recyclerview);
+        mGainersRecyclerView = findViewById(R.id.gainer_recyclerview);
         mGainersRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         gainersUI(service);
 
-        mLosersRecyclerView = (RecyclerView) findViewById(R.id.losers_recyclerview);
+        mLosersRecyclerView = findViewById(R.id.losers_recyclerview);
         mLosersRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         losersUI(service);
 
@@ -56,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Stocks>>() {
             @Override
-            public void onResponse(Call<List<Stocks>> call, Response<List<Stocks>> response) {
+            public void onResponse(@NonNull Call<List<Stocks>> call, @NonNull Response<List<Stocks>> response) {
                 List<Stocks> data = response.body();
 
                 StockAdapter adapter = new StockAdapter(data);
@@ -64,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Stocks>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Stocks>> call, @NonNull Throwable t) {
                 Toast.makeText(MainActivity.this, "ERROR Displaying Stocks Most Active", Toast.LENGTH_SHORT).show();
             }
         });
@@ -76,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Stocks>>() {
             @Override
-            public void onResponse(Call<List<Stocks>> call, Response<List<Stocks>> response) {
+            public void onResponse(@NonNull Call<List<Stocks>> call, @NonNull Response<List<Stocks>> response) {
                 List<Stocks> data = response.body();
 
                 StockAdapter adapter = new StockAdapter(data);
@@ -84,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Stocks>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Stocks>> call, @NonNull Throwable t) {
                 Toast.makeText(MainActivity.this, "ERROR Displaying Stocks Gainers", Toast.LENGTH_SHORT).show();
             }
         });
@@ -95,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Stocks>>() {
             @Override
-            public void onResponse(Call<List<Stocks>> call, Response<List<Stocks>> response) {
+            public void onResponse(@NonNull Call<List<Stocks>> call, @NonNull Response<List<Stocks>> response) {
                 List<Stocks> data = response.body();
 
                 StockAdapter adapter = new StockAdapter(data);
@@ -103,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Stocks>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Stocks>> call, @NonNull Throwable t) {
                 Toast.makeText(MainActivity.this, "ERROR Displaying Stocks Losers", Toast.LENGTH_SHORT).show();
             }
         });

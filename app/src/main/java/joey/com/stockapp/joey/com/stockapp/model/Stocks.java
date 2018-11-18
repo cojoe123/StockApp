@@ -27,10 +27,6 @@ public class Stocks {
         return priceChange;
     }
 
-    public void setPriceChange(Double priceChange) {
-        this.priceChange = priceChange;
-    }
-
     public String getSymbol() {
         return symbol;
     }
@@ -43,7 +39,4 @@ public class Stocks {
         return latestPrice;
     }
 
-    public void setLatestPrice(double latestPrice) {
-        this.latestPrice = latestPrice;
-    }
 }

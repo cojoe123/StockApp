@@ -1,6 +1,7 @@
 package joey.com.stockapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,24 +17,23 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockHolder>
 
     private List<Stocks> values;
 
-    public StockAdapter(List<Stocks> values) {
+    StockAdapter(List<Stocks> values) {
         this.values = values;
     }
 
+    @NonNull
     @Override
-    public StockHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public StockHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View stockView = inflater.inflate(R.layout.list_item_stock, parent, false);
 
-        StockHolder stockHolder = new StockHolder(stockView);
-
-        return stockHolder;
+        return new StockHolder(stockView);
     }
 
     @Override
-    public void onBindViewHolder(StockAdapter.StockHolder stockHolder, int position) {
+    public void onBindViewHolder(@NonNull StockAdapter.StockHolder stockHolder, int position) {
         Stocks stock = values.get(position);
 
         TextView titleTextView = stockHolder.stockTextView;
@@ -49,21 +49,24 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockHolder>
     }
 
     public class StockHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView stockTextView;
-        public TextView priceTextView;
+        TextView stockTextView;
+        TextView priceTextView;
 
-        public StockHolder(View itemView) {
+        StockHolder(View itemView) {
             super(itemView);
 
-            stockTextView = (TextView)itemView.findViewById(R.id.list_item_stock_text);
-            priceTextView = (TextView)itemView.findViewById(R.id.list_item_price_text);
+            stockTextView = itemView.findViewById(R.id.list_item_stock_text);
+            priceTextView = itemView.findViewById(R.id.list_item_price_text);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+//            Stocks stock = values.get(getLayoutPosition());
+//
+//            Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
+//
         }
     }
 

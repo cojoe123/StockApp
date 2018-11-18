@@ -37,6 +37,7 @@ public interface IEXStockAPI {
     Call<List<Stocks>> getLosers();
 
     // call crypto info
-
+    @GET("stock/market/crypto")
+    Call<List<Stocks>> getCryptoMarket();
 
 }

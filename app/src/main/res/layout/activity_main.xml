@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,18 +19,22 @@
             android:orientation="horizontal"
             android:queryHint="Search Ticker"
             android:visibility="visible">
-
         </SearchView>
 
         <Button
             android:id="@+id/crypto_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Crypto Market"
+            android:text="@string/cryto_button"
             android:visibility="visible" />
 
     </LinearLayout>
+
+    <!--<ListView-->
+        <!--android:id="@+id/search_list"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="122dp" />-->
 
     <View
         android:id="@+id/divider3"
@@ -44,7 +47,7 @@
         android:id="@+id/active_title"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:text="Today's Most Active:" />
+        android:text="@string/most_active"/>
 
     <android.support.v7.widget.RecyclerView
         android:padding="4dp"
@@ -66,7 +69,7 @@
         android:id="@+id/gainers_title"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:text="Today's Gainers" />
+        android:text="@string/gainers"/>
 
     <android.support.v7.widget.RecyclerView
         android:padding="4dp"
@@ -86,7 +89,7 @@
         android:id="@+id/losers_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Today's: Losers:" />
+        android:text="@string/losers"/>
 
     <android.support.v7.widget.RecyclerView
         android:padding="4dp"
