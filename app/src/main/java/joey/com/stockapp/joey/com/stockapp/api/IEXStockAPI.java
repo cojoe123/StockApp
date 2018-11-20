@@ -21,7 +21,7 @@ public interface IEXStockAPI {
     Call<CompanyInfo> getExtraCompanyInfo(@Path("ticker") String company);
 
     // call prices of a company to form a chart
-    @GET("stock/{ticker}/chart/1d")
+    @GET("stock/{ticker}/chart")
     Call<List<CompanyChart>> getCompanyChart(@Path("ticker") String company);
 
     // call the top 10 most active of the day

@@ -9,93 +9,44 @@ public class CompanyStock {
 
     @SerializedName("quote")
     @Expose
-    private List<Quote> quotes = null;
+    private Quote quotes;
 
-    public CompanyStock(List<Quote> quotes) {
-        this.quotes = quotes;
-    }
-
-    public List<Quote> getQuotes() {
+    public Quote getQuotes() {
         return quotes;
-    }
-
-    public void setQuotes(List<Quote> quotes) {
-        this.quotes = quotes;
     }
 
 
     public class Quote {
-        @SerializedName("companyName")
-        @Expose
-        private String companyName;
-
-        @SerializedName("sector")
-        @Expose
-        private String sector;
-
         @SerializedName("open")
         @Expose
-        private double open;
+        private Double open;
 
         @SerializedName("close")
         @Expose
-        private double close;
+        private Double close;
 
         @SerializedName("week52High")
         @Expose
-        private double week52High;
+        private Double week52High;
 
         @SerializedName("week52Low")
         @Expose
-        private double week52Low;
+        private Double week52Low;
 
-        public String getCompanyName() {
-            return companyName;
-        }
-
-        public void setCompanyName(String companyName) {
-            this.companyName = companyName;
-        }
-
-        public String getSector() {
-            return sector;
-        }
-
-        public void setSector(String sector) {
-            this.sector = sector;
-        }
-
-        public double getOpen() {
+        public Double getOpen() {
             return open;
         }
 
-        public void setOpen(double open) {
-            this.open = open;
-        }
-
-        public double getClose() {
+        public Double getClose() {
             return close;
         }
 
-        public void setClose(double close) {
-            this.close = close;
-        }
-
-        public double getWeek52High() {
+        public Double getWeek52High() {
             return week52High;
         }
 
-        public void setWeek52High(double week52High) {
-            this.week52High = week52High;
-        }
-
-        public double getWeek52Low() {
+        public Double getWeek52Low() {
             return week52Low;
         }
-
-        public void setWeek52Low(double week52Low) {
-            this.week52Low = week52Low;
-        }
     }
-
 }

@@ -13,15 +13,10 @@ public class CompanyInfo {
     @Expose
     private String description;
 
-    @SerializedName("ceo")
-    @Expose
-    private String ceo;
-
 
     public CompanyInfo(String industry, String description, String ceo) {
         this.industry = industry;
         this.description = description;
-        this.ceo = ceo;
     }
 
     public String getIndustry() {
@@ -36,15 +31,4 @@ public class CompanyInfo {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCeo() {
-        return ceo;
-    }
-
-    public void setCeo(String ceo) {
-        this.ceo = ceo;
-    }
 }

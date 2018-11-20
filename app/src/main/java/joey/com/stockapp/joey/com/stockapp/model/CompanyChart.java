@@ -7,17 +7,21 @@ public class CompanyChart {
 
     @SerializedName("average")
     @Expose
-    private String average;
+    private Double average;
 
-    public CompanyChart(String average) {
+    @SerializedName("changeOverTime")
+    @Expose
+    private Float changeOverTime;
+
+    public CompanyChart(Double average, Float changeOverTime) {
         this.average = average;
+        this.changeOverTime = changeOverTime;
     }
 
-    public String getAverage() {
+    public Float getChangeOvertime() { return changeOverTime; }
+
+    public Double getAverage() {
         return average;
     }
 
-    public void setAverage(String average) {
-        this.average = average;
-    }
 }

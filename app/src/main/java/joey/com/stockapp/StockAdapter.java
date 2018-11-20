@@ -2,6 +2,7 @@ package joey.com.stockapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -63,10 +64,15 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockHolder>
 
         @Override
         public void onClick(View v) {
-//            Stocks stock = values.get(getLayoutPosition());
-//
-//            Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
-//
+            Stocks stock = values.get(getLayoutPosition());
+
+            Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
+            Bundle extra = new Bundle();
+            extra.putString("ticker", stock.getSymbol());
+
+            intent.putExtras(extra);
+            itemView.getContext().startActivity(intent);
+
         }
     }
 
