@@ -13,8 +13,17 @@ public class Stocks {
     @Expose
     private double latestPrice;
 
-    @SerializedName("change")
+    @SerializedName("changePercent")
+    @Expose
     private Double priceChange;
+
+    @SerializedName("open")
+    @Expose
+    private String open;
+
+    @SerializedName("companyName")
+    @Expose
+    private String name;
 
     public Stocks() {}
 
@@ -39,4 +48,11 @@ public class Stocks {
         return latestPrice;
     }
 
+    public String getOpen() {
+        return open;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

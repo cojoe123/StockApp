@@ -11,7 +11,8 @@
         android:id="@+id/crypto_title"
         android:layout_width="460dp"
         android:layout_height="wrap_content"
-        android:text="@string/cryto_activity_title"/>
+        android:text="@string/cryto_activity_title"
+        android:textSize="20dp"/>
 
     <View
         android:id="@+id/divider4"

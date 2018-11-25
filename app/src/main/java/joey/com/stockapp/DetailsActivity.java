@@ -1,5 +1,7 @@
 package joey.com.stockapp;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,9 +9,11 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
+//import com.github.mikephil.charting.charts.LineChart;
+//import com.github.mikephil.charting.data.Entry;
+//import com.jjoe64.graphview.GraphView;
+//import com.jjoe64.graphview.series.DataPoint;
+//import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +29,15 @@ import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private TextView mStockTextView;
     private TextView mSectorTextView;
     private TextView mDescTextView;
     private TextView mopenTextView;
     private TextView mcloseTextView;
     private TextView m52HighTextView;
     private TextView m52LowTextView;
-    private LineGraphSeries<DataPoint> series;
-    private GraphView mGraphView;
+//    private LineGraphSeries<DataPoint> series;
+//    private GraphView mGraphView;
+//    private LineChart mLineChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,8 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String symbol = intent.getStringExtra("ticker");
 
-        mStockTextView = findViewById(R.id.stock_title);
-        mStockTextView.setText("Details for " + symbol);
+        TextView stockTextView = findViewById(R.id.stock_title);
+        stockTextView.setText(String.format("Details for %s", symbol));
 
         mSectorTextView = findViewById(R.id.sector_view);
         mDescTextView = findViewById(R.id.desc_view);
@@ -56,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
         m52HighTextView = findViewById(R.id.year_high_view);
         m52LowTextView = findViewById(R.id.year_low_view);
 
-        mGraphView = findViewById(R.id.stock_graph);
+//        mLineChart = findViewById(R.id.stock_graph);
 
 //        stockChartUI(service, symbol);
         stockInfoUI(service, symbol);
@@ -72,15 +76,10 @@ public class DetailsActivity extends AppCompatActivity {
             public void onResponse(Call<List<CompanyChart>> call, Response<List<CompanyChart>> response) {
                 List<CompanyChart> data = response.body();
 
-                List<Double> xVals = new ArrayList<>();
-                List<Float> yVals = new ArrayList<>();
-
-                if (data != null) {
-                    for (CompanyChart cc : data) {
-                        xVals.add(cc.getAverage());
-                        yVals.add(cc.getChangeOvertime());
-                    }
-                }
+//                List<Entry> entries = new ArrayList<>();
+//                for(CompanyChart val : data) {
+//                    entries.add(new Entry(val.))
+//                }
 
             }
 
@@ -95,6 +94,7 @@ public class DetailsActivity extends AppCompatActivity {
         Call<CompanyStock> call = service.getCompany(symbol);
 
         call.enqueue(new Callback<CompanyStock>() {
+            @SuppressLint("DefaultLocale")
             @Override
             public void onResponse(Call<CompanyStock> call, Response<CompanyStock> response) {
                 CompanyStock cs = response.body();
@@ -109,7 +109,7 @@ public class DetailsActivity extends AppCompatActivity {
                 week52Low = q.getWeek52Low();
 
                 mopenTextView.setText(String.format("Opening Price: %.2f", open));
-                mcloseTextView.setText(String.format("Closinging Price: %.2f", close));
+                mcloseTextView.setText(String.format("Closing Price: %.2f", close));
                 m52HighTextView.setText(String.format("Year High: %.2f", week52High));
                 m52LowTextView.setText(String.format("Year Low: %.2f", week52Low));
             }

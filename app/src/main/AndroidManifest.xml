@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <!-- Main Activity -->
+        <!-- Parent -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Crypto Activity View -->
         <activity
             android:name=".CryptoActivity"
             android:parentActivityName=".MainActivity">
@@ -27,11 +32,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".DetailsActivity"
+
+        <!-- Stock Details View-->
+        <activity
+            android:name=".DetailsActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+
+        <!-- Crypto Market Details View -->
+        <activity android:name=".CryptoDetailsActivity"
+            android:parentActivityName=".CryptoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CryptoActivity" />
         </activity>
     </application>
 

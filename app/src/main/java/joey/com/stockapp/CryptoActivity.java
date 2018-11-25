@@ -41,7 +41,7 @@ public class CryptoActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<List<Stocks>> call, @NonNull Response<List<Stocks>> response) {
                 List<Stocks> cryptoData = response.body();
 
-                StockAdapter adapter = new StockAdapter(cryptoData);
+                CryptoAdapter adapter = new CryptoAdapter(cryptoData);
                 mRecyclerView.setAdapter(adapter);
             }
 
