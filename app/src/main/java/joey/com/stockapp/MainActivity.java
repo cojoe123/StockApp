@@ -16,6 +16,7 @@ import java.util.List;
 
 import joey.com.stockapp.joey.com.stockapp.api.IEXStockAPI;
 import joey.com.stockapp.joey.com.stockapp.api.RetrofitClient;
+import joey.com.stockapp.joey.com.stockapp.model.CompanyStock;
 import joey.com.stockapp.joey.com.stockapp.model.Stocks;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,10 +34,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        IEXStockAPI service = RetrofitClient.getRetrofitInstance().create(IEXStockAPI.class);
+        final IEXStockAPI service = RetrofitClient.getRetrofitInstance().create(IEXStockAPI.class);
 
         mSearchView = findViewById(R.id.ticker_search);
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // first check if input leads to a ticker
+                checkSearchInput(service, query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         Button button = findViewById(R.id.crypto_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +71,31 @@ public class MainActivity extends AppCompatActivity {
         mLosersRecyclerView = findViewById(R.id.losers_recyclerview);
         mLosersRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         losersUI(service);
+
+    }
+
+    protected void checkSearchInput(IEXStockAPI service, final String query) {
+        Call<CompanyStock> call = service.getCompany(query);
+        call.enqueue(new Callback<CompanyStock>() {
+            @Override
+            public void onResponse(Call<CompanyStock> call, Response<CompanyStock> response) {
+                if (response.isSuccessful()) {
+                    Bundle extra = new Bundle();
+                    extra.putString("ticker", query);
+
+                    Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                    intent.putExtras(extra);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "Ticker entered is not valid", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CompanyStock> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "ERROR Displaying Search Results", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

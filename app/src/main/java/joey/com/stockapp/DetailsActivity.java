@@ -1,7 +1,6 @@
 package joey.com.stockapp;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,16 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +35,6 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView mcloseTextView;
     private TextView m52HighTextView;
     private TextView m52LowTextView;
-//    private LineGraphSeries<DataPoint> series;
-//    private GraphView mGraphView;
-//    private LineChart mLineChart;
     private BarChart mBarChart;
 
     @Override
@@ -69,7 +59,6 @@ public class DetailsActivity extends AppCompatActivity {
         m52LowTextView = findViewById(R.id.year_low_view);
 
         mBarChart = findViewById(R.id.stock_graph);
-//        mBarChart.getDescription().setEnabled(true);
 
         stockChartUI(service, symbol);
         stockInfoUI(service, symbol);
