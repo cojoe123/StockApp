@@ -5,23 +5,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class CompanyChart {
 
-    @SerializedName("average")
+    @SerializedName("close")
     @Expose
-    private Double average;
+    private Float close;
 
     @SerializedName("changeOverTime")
     @Expose
     private Float changeOverTime;
 
-    public CompanyChart(Double average, Float changeOverTime) {
-        this.average = average;
+    @SerializedName("label")
+    @Expose
+    private String date;
+
+//    @SerializedName("")
+
+    public CompanyChart(Float average, Float changeOverTime) {
+        this.close = average;
         this.changeOverTime = changeOverTime;
     }
 
-    public Float getChangeOvertime() { return changeOverTime; }
+    public Float getChangeOverTime() {
+        return changeOverTime;
+    }
 
-    public Double getAverage() {
-        return average;
+    public String getDate() {
+        return date;
+    }
+
+    public Float getClose() {
+        return close;
     }
 
 }

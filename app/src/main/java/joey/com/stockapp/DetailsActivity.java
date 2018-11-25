@@ -3,17 +3,24 @@ package joey.com.stockapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.github.mikephil.charting.charts.LineChart;
-//import com.github.mikephil.charting.data.Entry;
-//import com.jjoe64.graphview.GraphView;
-//import com.jjoe64.graphview.series.DataPoint;
-//import com.jjoe64.graphview.series.LineGraphSeries;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
 //    private LineGraphSeries<DataPoint> series;
 //    private GraphView mGraphView;
 //    private LineChart mLineChart;
+    private BarChart mBarChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +68,10 @@ public class DetailsActivity extends AppCompatActivity {
         m52HighTextView = findViewById(R.id.year_high_view);
         m52LowTextView = findViewById(R.id.year_low_view);
 
-//        mLineChart = findViewById(R.id.stock_graph);
+        mBarChart = findViewById(R.id.stock_graph);
+//        mBarChart.getDescription().setEnabled(true);
 
-//        stockChartUI(service, symbol);
+        stockChartUI(service, symbol);
         stockInfoUI(service, symbol);
         extraStockInfoUI(service, symbol);
 
@@ -73,13 +82,38 @@ public class DetailsActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<CompanyChart>>() {
             @Override
-            public void onResponse(Call<List<CompanyChart>> call, Response<List<CompanyChart>> response) {
+            public void onResponse(@NonNull Call<List<CompanyChart>> call, @NonNull Response<List<CompanyChart>> response) {
                 List<CompanyChart> data = response.body();
 
-//                List<Entry> entries = new ArrayList<>();
-//                for(CompanyChart val : data) {
-//                    entries.add(new Entry(val.))
-//                }
+                assert data != null;
+                List<BarEntry> entries = new ArrayList<>();
+                for(int i = 0; i < data.size(); i++) {
+                    float value = data.get(i).getClose();
+                    entries.add(new BarEntry(i, value));
+                }
+
+
+                List<String> labels = new ArrayList<>();
+                for(CompanyChart cc : data) {
+                    labels.add(cc.getDate());
+                }
+
+                BarDataSet set = new BarDataSet(entries, "Daily Closing Stock Prices");
+
+                BarData barData = new BarData(set);
+                barData.setBarWidth(0.9f);
+
+                Description msg = new Description();
+                msg.setText("");
+
+                mBarChart.setData(barData);
+                mBarChart.setDescription(msg);
+                mBarChart.getAxisLeft().setDrawLabels(false);
+                mBarChart.getAxisRight().setDrawLabels(false);
+                mBarChart.getXAxis().setDrawLabels(false);
+                mBarChart.setFitBars(true);
+                mBarChart.invalidate();
+                mBarChart.animateY(500);
 
             }
 
