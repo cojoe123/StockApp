@@ -1,5 +1,6 @@
 package joey.com.stockapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class CryptoAdapter extends RecyclerView.Adapter<CryptoAdapter.CryptoHold
         return new CryptoAdapter.CryptoHolder(stockView);
     }
 
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull CryptoAdapter.CryptoHolder Holder, int position) {
         Stocks stock = values.get(position);

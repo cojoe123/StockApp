@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView mGainersRecyclerView;
     private RecyclerView mLosersRecyclerView;
-    private SearchView mSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         final IEXStockAPI service = RetrofitClient.getRetrofitInstance().create(IEXStockAPI.class);
 
-        mSearchView = findViewById(R.id.ticker_search);
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        SearchView searchView = findViewById(R.id.ticker_search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // first check if input leads to a ticker
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         Call<CompanyStock> call = service.getCompany(query);
         call.enqueue(new Callback<CompanyStock>() {
             @Override
-            public void onResponse(Call<CompanyStock> call, Response<CompanyStock> response) {
+            public void onResponse(@NonNull Call<CompanyStock> call, @NonNull Response<CompanyStock> response) {
                 if (response.isSuccessful()) {
                     Bundle extra = new Bundle();
                     extra.putString("ticker", query);
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CompanyStock> call, Throwable t) {
+            public void onFailure(@NonNull Call<CompanyStock> call, @NonNull Throwable t) {
                 Toast.makeText(MainActivity.this, "ERROR Displaying Search Results", Toast.LENGTH_SHORT).show();
             }
         });

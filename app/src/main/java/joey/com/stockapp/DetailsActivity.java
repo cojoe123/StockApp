@@ -48,7 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
         String symbol = intent.getStringExtra("ticker");
 
         TextView stockTextView = findViewById(R.id.stock_title);
-        stockTextView.setText(String.format("Details for %s", symbol));
+        stockTextView.setText(String.format("Details for %s", symbol.toUpperCase()));
 
         mSectorTextView = findViewById(R.id.sector_view);
         mDescTextView = findViewById(R.id.desc_view);
@@ -82,10 +82,10 @@ public class DetailsActivity extends AppCompatActivity {
                 }
 
 
-                List<String> labels = new ArrayList<>();
-                for(CompanyChart cc : data) {
-                    labels.add(cc.getDate());
-                }
+//                List<String> labels = new ArrayList<>();
+//                for(CompanyChart cc : data) {
+//                    labels.add(cc.getDate());
+//                }
 
                 BarDataSet set = new BarDataSet(entries, "Daily Closing Stock Prices");
 
@@ -107,7 +107,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<CompanyChart>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<CompanyChart>> call, @NonNull Throwable t) {
                 Toast.makeText(DetailsActivity.this, "ERROR Displaying Stocks Chart", Toast.LENGTH_SHORT).show();
             }
         });
@@ -119,13 +119,13 @@ public class DetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<CompanyStock>() {
             @SuppressLint("DefaultLocale")
             @Override
-            public void onResponse(Call<CompanyStock> call, Response<CompanyStock> response) {
+            public void onResponse(@NonNull Call<CompanyStock> call, @NonNull Response<CompanyStock> response) {
                 CompanyStock cs = response.body();
 
                 assert cs != null;
                 CompanyStock.Quote q = cs.getQuotes();
 
-                Double open = 0.0, close = 0.0, week52High = 0.0, week52Low = 0.0;
+                Double open, close, week52High, week52Low;
                 open = q.getOpen();
                 close = q.getClose();
                 week52High = q.getWeek52High();
@@ -138,7 +138,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CompanyStock> call, Throwable t) {
+            public void onFailure(@NonNull Call<CompanyStock> call, @NonNull Throwable t) {
                 Log.e("ERROR", t.toString());
                 Toast.makeText(DetailsActivity.this, "ERROR Displaying Stocks Information", Toast.LENGTH_SHORT).show();
             }
@@ -150,7 +150,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<CompanyInfo>() {
             @Override
-            public void onResponse(Call<CompanyInfo> call, Response<CompanyInfo> response) {
+            public void onResponse(@NonNull Call<CompanyInfo> call, @NonNull Response<CompanyInfo> response) {
                 CompanyInfo ci = response.body();
 
                 assert ci != null;
@@ -159,7 +159,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CompanyInfo> call, Throwable t) {
+            public void onFailure(@NonNull Call<CompanyInfo> call, @NonNull Throwable t) {
                 Toast.makeText(DetailsActivity.this, "ERROR Displaying Stocks Extra Information", Toast.LENGTH_SHORT).show();
             }
         });

@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <!--android:background="#40000000">-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="34dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/midnight_blue_25Percent">
 
         <SearchView
             android:id="@+id/ticker_search"
@@ -21,13 +23,15 @@
             android:visibility="visible">
         </SearchView>
 
-        <Button
+        <Button style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/crypto_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/cryto_button"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:padding="10dp"
+            android:background="@color/darkmagenta_60Percent"/>
 
     </LinearLayout>
 
@@ -42,7 +46,10 @@
         android:id="@+id/active_title"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:text="@string/most_active"/>
+        android:text="@string/most_active"
+        android:padding="5dp"
+        android:textSize="15sp"
+        android:background="@color/black25Percent"/>
 
     <android.support.v7.widget.RecyclerView
         android:padding="4dp"
@@ -64,7 +71,10 @@
         android:id="@+id/gainers_title"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:text="@string/gainers"/>
+        android:text="@string/gainers"
+        android:padding="5dp"
+        android:textSize="15sp"
+        android:background="@color/green_25Percent"/>
 
     <android.support.v7.widget.RecyclerView
         android:padding="4dp"
@@ -84,7 +94,10 @@
         android:id="@+id/losers_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/losers"/>
+        android:text="@string/losers"
+        android:padding="5dp"
+        android:textSize="15sp"
+        android:background="@color/red_25Percent"/>
 
     <android.support.v7.widget.RecyclerView
         android:padding="4dp"

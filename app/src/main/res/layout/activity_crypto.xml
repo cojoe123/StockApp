@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".CryptoActivity">
+    tools:context=".CryptoActivity"
+    android:background="@color/gray_percent">
 
 
     <TextView

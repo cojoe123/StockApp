@@ -42,6 +42,10 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockHolder>
 
         TextView priceTitleTextView = stockHolder.priceTextView;
         priceTitleTextView.setText("Latest Price: " + String.format("%.2f", stock.getLatestPrice()));
+
+        TextView changeView = stockHolder.changeTextView;
+        changeView.setText(String.format("%.2f", stock.getPriceChange()));
+
     }
 
     @Override
@@ -52,12 +56,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockHolder>
     public class StockHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView stockTextView;
         TextView priceTextView;
+        TextView changeTextView;
 
         StockHolder(View itemView) {
             super(itemView);
 
             stockTextView = itemView.findViewById(R.id.list_item_stock_text);
             priceTextView = itemView.findViewById(R.id.list_item_price_text);
+            changeTextView = itemView.findViewById(R.id.list_item_price_change_text);
 
             itemView.setOnClickListener(this);
         }

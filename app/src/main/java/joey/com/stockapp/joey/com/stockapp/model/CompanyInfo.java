@@ -14,17 +14,13 @@ public class CompanyInfo {
     private String description;
 
 
-    public CompanyInfo(String industry, String description, String ceo) {
+    public CompanyInfo(String industry, String description) {
         this.industry = industry;
         this.description = description;
     }
 
     public String getIndustry() {
         return industry;
-    }
-
-    public void setIndustry(String industry) {
-        this.industry = industry;
     }
 
     public String getDescription() {

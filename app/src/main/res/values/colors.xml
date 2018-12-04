@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#283d4d</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="midnight_blue_25Percent">#40003366</color>
+    <color name="black25Percent">#40000000</color>
+    <color name="green_25Percent">#40A4C639</color>
+    <color name="red_25Percent">#40FF0000</color>
+    <color name="darkmagenta_60Percent">#808B0080</color>
+    <color name="gray_percent">#A9A9A9</color>
 </resources>

@@ -17,8 +17,6 @@ public class CompanyChart {
     @Expose
     private String date;
 
-//    @SerializedName("")
-
     public CompanyChart(Float average, Float changeOverTime) {
         this.close = average;
         this.changeOverTime = changeOverTime;
