@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StockApp</string>
+    <string name="app_name">The Bullish</string>
     <string name="most_active">Today\'s Most Active:</string>
     <string name="gainers">Today\'s Gainers:</string>
     <string name="losers">Today\'s: Losers:</string>

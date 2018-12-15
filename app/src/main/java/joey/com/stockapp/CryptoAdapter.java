@@ -3,6 +3,7 @@ package joey.com.stockapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -46,7 +47,14 @@ public class CryptoAdapter extends RecyclerView.Adapter<CryptoAdapter.CryptoHold
         priceTitleTextView.setText("Latest Price: " + String.format("%.2f", stock.getLatestPrice()));
 
         TextView changePriceView = Holder.changeView;
-        changePriceView.setText(String.format("%.2f", stock.getPriceChange()));
+        if (stock.getPriceChange() < 0) {
+            changePriceView.setTextColor(Color.parseColor("#f40606"));
+            changePriceView.setText("Price Change: " + String.format("%.2f", stock.getPriceChange()));
+        } else {
+            changePriceView.setTextColor(Color.parseColor("#0fd608"));
+            changePriceView.setText("Price Change: " + String.format("%.2f", stock.getPriceChange()));
+        }
+
     }
 
     @Override

@@ -2,8 +2,10 @@ package joey.com.stockapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +46,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockHolder>
         priceTitleTextView.setText("Latest Price: " + String.format("%.2f", stock.getLatestPrice()));
 
         TextView changeView = stockHolder.changeTextView;
-        changeView.setText(String.format("%.2f", stock.getPriceChange()));
+        if (stock.getPriceChange() < 0) {
+            changeView.setTextColor(Color.parseColor("#f40606"));
+            changeView.setText("Price Change: " + String.format("%.2f", stock.getPriceChange()));
+        } else {
+            changeView.setTextColor(Color.parseColor("#0fd608"));
+            changeView.setText("Price Change: " + String.format("%.2f", stock.getPriceChange()));
+        }
 
     }
 
